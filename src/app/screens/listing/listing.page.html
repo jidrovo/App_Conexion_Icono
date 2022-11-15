@@ -1,0 +1,27 @@
+<ion-content class="ion-padding">
+  <div class="header">
+    <h1>Gestion</h1>
+    <ion-buttons>
+      <ion-button *ngIf="!network.onlineIndicator">
+        <ion-icon style="zoom: 2" name="wifi-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="network.onlineIndicator">
+        <ion-icon color="success" style="zoom: 2" name="wifi"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <div class="avatar">
+      <ion-img src="https://cdn-icons-png.flaticon.com/512/1946/1946429.png"></ion-img>
+    </div>
+  </div>
+  <app-searchbar (ionChange)="handleChange($event)"></app-searchbar>
+  <div class="categories"> 
+    <!-- <app-category-item *ngFor="let item of categories" [item]="item"></app-category-item> -->
+  </div>
+  <h1 class="list-header">Listado</h1>
+  <div class="food-list" *ngIf="results.length == 0">
+    <app-food-card *ngFor="let user of getdata" [item]="user" (clicked)="goToDetailPage(user.cedulaCliente)" ></app-food-card>
+  </div>
+  <div class="food-list">
+    <app-food-card *ngFor="let user of results" [item]="user" (clicked)="goToDetailPage(user.cedulaCliente)" ></app-food-card>
+  </div>
+</ion-content>
